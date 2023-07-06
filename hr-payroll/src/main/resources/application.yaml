@@ -1,2 +1,4 @@
 server:
   port: 8091
+hr-worker:
+  host: http://localhost:8090/
