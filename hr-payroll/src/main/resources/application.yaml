@@ -12,9 +12,8 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-
 resilience4j:
-  #https://atitudereflexiva.wordpress.com/2022/05/02/integrando-circuit-breaker-e-retry-com-resilience4j/
+#https://atitudereflexiva.wordpress.com/2022/05/02/integrando-circuit-breaker-e-retry-com-resilience4j/
   retry:
     retry-aspect-order: 2  #determina que o retry aconteça antes do circuitbreaker
     instances:
@@ -35,21 +34,3 @@ resilience4j:
         slow-call-duration-threshold: 10s
         slow-call-rate-threshold: 60
         failure-rate-threshold: 60
-#resilience4j.circuitbreaker:
-#  configs:
-#    default:
-#      slidingWindowSize: 100
-#      permittedNumberOfCallsInHalfOpenState: 10
-#      waitDurationInOpenState: 10000
-#      failureRateThreshold: 60
-#      eventConsumerBufferSize: 10
-#      registerHealthIndicator: true
-#    someShared:
-#      slidingWindowSize: 50
-#      permittedNumberOfCallsInHalfOpenState: 10
-#  instances:
-#    backendA:
-#      baseConfig: default
-#      waitDurationInOpenState: 5000
-#    backendB:
-#      baseConfig: someShared
