@@ -1,4 +1,4 @@
-package com.franca.hrworker.entities;
+package com.franca.hruser.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Entity
 @NoArgsConstructor
-@Table(name = "tb_worker")
-public class Worker implements Serializable {
-
+@Table(name = "tb_role")
+public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
-    private  String name;
-    private Double dailyIncome;
+    private Long id;
+    private String roleName;
 }

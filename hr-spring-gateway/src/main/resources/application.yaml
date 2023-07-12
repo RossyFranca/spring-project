@@ -17,6 +17,7 @@ spring:
           uri: lb://hr-payroll
           predicates:
             - Path=/payments/**
+        - id: hr-user
 eureka:
   client:
     service-url:
