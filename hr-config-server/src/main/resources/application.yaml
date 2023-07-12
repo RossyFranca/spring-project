@@ -1,13 +1,17 @@
 server:
   port: 8888
 spring:
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/RossyFranca/ms-config-server
-    server:
-      git:
-        default-label: main
+        native:
+          searchLocations: file:///C:/Workspace/spring-project/
+#        git:
+#          uri: https://github.com/RossyFranca/ms-config-server
+#    server:
+#      git:
+#        default-label: main
   application:
     name: hr-config-server
