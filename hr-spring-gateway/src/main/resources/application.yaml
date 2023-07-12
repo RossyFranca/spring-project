@@ -18,6 +18,9 @@ spring:
           predicates:
             - Path=/payments/**
         - id: hr-user
+          uri: lb://hr-user
+          predicates:
+            - Path=/users/**
 eureka:
   client:
     service-url:
