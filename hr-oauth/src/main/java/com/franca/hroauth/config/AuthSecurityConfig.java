@@ -35,7 +35,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-public class AppConfig {
+public class AuthSecurityConfig {
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -66,8 +66,31 @@ public class AppConfig {
                 .clientSettings(ClientSettings.builder().
                         requireAuthorizationConsent(false).build()).build();
 
+
+        RegisteredClient awsblobClient = RegisteredClient.
+                withId("2")
+                .clientId("awblog")
+                .clientSecret(passwordEncoder.encode("123456"))
+                .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
+                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
+                .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
+                .redirectUri("http://localhost:3000/authorized")
+                .redirectUri("https://oidcdebugger.com/debug")
+                .redirectUri("https://oauth.pstmn.io/v1/callback")
+                .scope("myuser:read")
+                .scope("myuser:write")
+                .scope("posts:write")
+                .tokenSettings(TokenSettings.builder()
+                        .accessTokenTimeToLive(Duration.ofMinutes(5))
+                        .refreshTokenTimeToLive((Duration.ofDays(1)))
+                        .reuseRefreshTokens(false)
+                        .build())
+                .clientSettings(ClientSettings.builder().
+                        requireAuthorizationConsent(false).build()).build();
+
+
         return new InMemoryRegisteredClientRepository(
-                Arrays.asList(userClient)
+                Arrays.asList(userClient,awsblobClient)
         );
     }
 
