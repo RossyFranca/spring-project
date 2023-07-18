@@ -89,19 +89,22 @@ public class AppConfig {
     }
 
     @Bean
-    public JWKSource<SecurityContext> jwkSource(JWKSet jwkSet){
+    public JWKSource<SecurityContext> jwkSource(JWKSet jwkSet) {
         return (jwkSelector, securityContext) -> jwkSelector.select((jwkSet));
     }
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
+
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     public JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
+
         return new NimbusJwtEncoder(jwkSource);
     }
+
 
 
 }
